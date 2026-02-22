@@ -1,20 +1,16 @@
 package dk.itu.moapd.x9.diko.ui.list
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import dk.itu.moapd.x9.diko.R
 import dk.itu.moapd.x9.diko.databinding.RowItemBinding
 import dk.itu.moapd.x9.diko.model.Report
 
 class CustomAdapter (
-    private val items : List<Report>,
+    private var items : List<Report>,
 ): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     /**
      * A set of private constants used in this class.
@@ -45,6 +41,12 @@ class CustomAdapter (
 
     override fun getItemCount(): Int = items.size
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newList: List<Report>) {
+        items = newList
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(
         private val binding: RowItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -57,7 +59,7 @@ class CustomAdapter (
                     "Incident" -> iconType.setImageResource(R.drawable.type_incident)
                     "Danger" -> iconType.setImageResource(R.drawable.type_road_danger)
                     "Maintenance" -> iconType.setImageResource(R.drawable.type_maintenance)
-                    "Inspection" -> iconType.setImageResource(R.drawable.type_inspection)
+                    "Inspection" -> iconType.setImageResource(R.drawable.type_police)
                     "Other" -> iconType.setImageResource(R.drawable.type_other)
                 }
                 textViewSeverity.text = report.severity

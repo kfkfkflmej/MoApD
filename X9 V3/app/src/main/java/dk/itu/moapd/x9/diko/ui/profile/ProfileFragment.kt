@@ -72,7 +72,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 viewModel.last_name = inputText.toString()
             }
             //ReportDate
-            datePicker.setOnClickListener {
+            textFieldDateOfBirth.setOnClickListener {
 
                 val constraints = CalendarConstraints.Builder()
                     .setValidator(DateValidatorPointBackward.now())

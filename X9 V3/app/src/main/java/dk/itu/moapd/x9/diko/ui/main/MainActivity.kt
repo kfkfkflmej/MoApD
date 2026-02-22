@@ -76,17 +76,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupNavigation()
-
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(
-                R.id.fragment_container_view
-            ) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
         //setupRecyclerView()
     }
 
@@ -116,7 +105,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
+
+
         setSupportActionBar(binding.topAppBar)
+
+        binding.topAppBar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         val navController = findNavController()
         appBarConfiguration = AppBarConfiguration(navController.graph)
