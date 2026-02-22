@@ -20,7 +20,7 @@
     <string name="option_1">Incident</string>
     <string name="option_2">Danger</string>
     <string name="option_3">Maintenance</string>
-    <string name="option_4">Inspection</string>
+    <string name="option_4">Police</string>
     <string name="option_5">Other</string>
     <string name="menu">Menu</string>
     <string name="report_page_title">Report Card</string>
