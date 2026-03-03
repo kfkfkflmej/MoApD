@@ -2,6 +2,7 @@ package dk.itu.moapd.x9.diko.ui.main
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +19,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dk.itu.moapd.x9.diko.R
@@ -29,6 +32,7 @@ import dk.itu.moapd.x9.diko.model.Report
 import dk.itu.moapd.x9.diko.ui.list.CustomAdapter
 import dk.itu.moapd.x9.diko.ui.report.REPORT_SUCCESSFUL
 import dk.itu.moapd.x9.diko.ui.report.ReportCard
+
 
 
 private const val TAG = "MainActivity"
@@ -75,6 +79,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityFragmentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            ViewCompat.setOnApplyWindowInsetsListener(binding.fragmentContainerView) { view, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom
+                )
+
+                insets
+            }
+        }
+
         setupNavigation()
         //setupRecyclerView()
     }
@@ -109,15 +128,15 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.topAppBar)
 
-        binding.topAppBar.setNavigationOnClickListener {
+        binding.topAppBar?.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
         val navController = findNavController()
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        setupBottomNavigation(navController)
+        setupActionBarIfPortrait(navController)
+        setupNavigation(navController)
     }
 
     /**
@@ -133,10 +152,26 @@ class MainActivity : AppCompatActivity() {
     /**
      * Connects BottomNavigationView (if present).
      */
-    private fun setupBottomNavigation(navController: NavController) {
+    private fun setupNavigation(navController: androidx.navigation.NavController) {
+        // Portrait: bottom navigation. Landscape: navigation rail.
         binding.bottomNavigation?.setupWithNavController(navController)
+        binding.navigationRail?.setupWithNavController(navController)
     }
 
+    private fun setupActionBarIfPortrait(navController: NavController) {
+        if (resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT) return
+
+        setSupportActionBar(binding.topAppBar)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController =
+            (
+                    supportFragmentManager.findFragmentById(R.id.fragment_container_view)
+                            as NavHostFragment
+                    ).navController
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 }
 
 
