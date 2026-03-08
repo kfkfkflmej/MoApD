@@ -62,7 +62,12 @@
     <string name="report_list_shortcut">See the latest reports</string>
     <string name="map_shortcut">Explore the map</string>
     <string name="report_shortcut">Report a problem</string>
-    <string name="num_of_reports_blank">You have submitted reports so far! Thank you for being part of the community!</string>
+    <string name="num_of_reports_blank">You have submitted _ reports so far! Thank you for being part of the community!</string>
     <string name="email_example">user_example@email.com</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="settings">Settings</string>
+    <string name="edit_picture">EDIT PICTURE</string>
+    <string name="sign_out">SIGN OUT</string>
+    <string name="done">DONE</string>
+    <string name="email">Email</string>
 </resources>
