@@ -1,37 +1,41 @@
 package dk.itu.moapd.x9.diko.model
 
-import android.os.Bundle
+
 
 data class Person(
-    val first_name: String,
-    val last_name: String,
+    val firstName: String,
+    val lastName: String,
     val username: String,
-    val num_reports: String,
+    val numReports: String,
     val email: String
-){
+){  // Defines the Person data class.
+    // It is used to store the user information and pass it between activities.
+
     fun isEmpty(): Boolean {
-        return first_name.isEmpty() &&
-                last_name.isEmpty() &&
+        return firstName.isEmpty() &&
+                lastName.isEmpty() &&
                 username.isEmpty() &&
-                num_reports.isEmpty() &&
+                numReports.isEmpty() &&
                 email.isEmpty()
     }
+    /*
     fun convertBundleToPerson(bundle: Bundle): Person {
         return Person(
-            first_name = bundle.getString("first_name", ""),
-            last_name = bundle.getString("last_name", ""),
+            firstName = bundle.getString("first_name", ""),
+            lastName = bundle.getString("last_name", ""),
             username = bundle.getString("username", ""),
-            num_reports = bundle.getString("gender", ""),
+            numReports = bundle.getString("gender", ""),
             email = bundle.getString("email", ""),
             )
     }
     fun toBundle(): Bundle {
         val bundle = Bundle()
-        bundle.putString("first_name", first_name)
-        bundle.putString("last_name", last_name)
+        bundle.putString("first_name", firstName)
+        bundle.putString("last_name", lastName)
         bundle.putString("username", username)
-        bundle.putString("num_reports", num_reports)
+        bundle.putString("num_reports", numReports)
         bundle.putString("email", email)
         return bundle
     }
+     */
 }

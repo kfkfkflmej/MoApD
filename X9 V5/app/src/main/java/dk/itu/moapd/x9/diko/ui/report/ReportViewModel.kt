@@ -1,15 +1,13 @@
 package dk.itu.moapd.x9.diko.ui.report
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import dk.itu.moapd.x9.diko.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
-private const val TAG = "ReportCardViewModel"
+
+
 
 const val TITLE_KEY = "TITLE_KEY"
 const val LOCATION_KEY = "LOCATION_KEY"
@@ -21,6 +19,9 @@ const val SEVERITY_KEY = "SEVERITY_KEY"
 class ReportViewModel(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    // Defines the state of the main UI components in the application
+    // and helps store temporary values in case of configuration changes.
 
     private val _uiState = MutableStateFlow(
         ReportUIState(

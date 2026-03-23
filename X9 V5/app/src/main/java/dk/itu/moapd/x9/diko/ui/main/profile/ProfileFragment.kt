@@ -3,6 +3,7 @@ package dk.itu.moapd.x9.diko.ui.main.profile
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -22,7 +23,8 @@ import dk.itu.moapd.x9.diko.ui.settings.SettingsActivity
 private const val TAG = "Profile"
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-
+    // Defines the Profile Fragment.
+    // Displays user information and reefers to the Settings Activity.
     private lateinit var binding: FragmentProfileBinding
 
     private val settingsLauncher= registerForActivityResult(
@@ -43,6 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated() called")
 
         binding = FragmentProfileBinding.bind(view)
         val menuHost: MenuHost = requireActivity()
@@ -74,16 +77,51 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             setupProfileInfo()
         }
     }
-    private fun setupProfileInfo()=
-        with(binding){
-            val user_data = Profile.getProfile()
-            textFirstName.text = user_data.first_name
-            textLastName.text = user_data.last_name
-            textUsername.text = user_data.username
-            textEmail.text = user_data.email
-            val stats_message = "You have submitted ${user_data.num_reports} reports so far! Thank you for being part of the community!"
-            textReportStats.text = stats_message
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume() called")
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause() called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop() called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy() called")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d(TAG, "onDetach() called")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView() called")
+    }
+
+    private fun setupProfileInfo()=
+        // Used for setting up the Profile Fragment. It makes it easier to reflect changes to the user information.
+        with(binding){
+            val userdata = Profile.getProfile()
+            textFirstName.text = userdata.firstName
+            textLastName.text = userdata.lastName
+            textUsername.text = userdata.username
+            textEmail.text = userdata.email
+            val statsMessage = getString(R.string.num_of_reports_blank, userdata.numReports)
+            textReportStats.text = statsMessage
+
+    }
+
+
 }
 
 

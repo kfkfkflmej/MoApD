@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.home.HomeFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Greeting -->
+            <TextView
+                android:id="@+id/text_greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/greeting"
+                style="@style/username_name"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Subtitle -->
+            <TextView
+                android:id="@+id/text_you_can"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_options"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Shortcut: Latest Reports -->
+            <TextView
+                android:id="@+id/action_latest_reports"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/report_list_shortcut"
+                style="@style/TextAppearance.Material3.BodyLarge.Emphasized"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/link"/>
+
+            <!-- Shortcut: Explore Map -->
+            <TextView
+                android:id="@+id/action_explore_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/map_shortcut"
+                style="@style/TextAppearance.Material3.BodyLarge.Emphasized"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/link"/>
+
+            <!-- Shortcut: Report Problem -->
+            <TextView
+                android:id="@+id/action_report_problem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/report_shortcut"
+                style="@style/TextAppearance.Material3.BodyLarge.Emphasized"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/link"/>
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="@string/add_report"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/add"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

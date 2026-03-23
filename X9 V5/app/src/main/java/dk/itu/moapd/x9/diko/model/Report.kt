@@ -9,14 +9,16 @@ data class Report(
      val type: String,
      val description: String,
      val severity: String
-){
-    fun isNotEmpty(): Boolean {
+){  // Defines the Report data class.
+    // It is used to store the report information and pass it between activities.
+
+    /*fun isNotEmpty(): Boolean {
         return title.isNotEmpty() &&
                 location.isNotEmpty() &&
                 date.isNotEmpty() &&
                 type.isNotEmpty() &&
                 severity.isNotEmpty()
-    }
+    }*/
     fun convertBundleToReport(bundle: Bundle): Report {
         return Report(
             title = bundle.getString("title", ""),

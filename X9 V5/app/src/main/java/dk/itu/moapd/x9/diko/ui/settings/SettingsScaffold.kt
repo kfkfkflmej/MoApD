@@ -2,7 +2,6 @@ package dk.itu.moapd.x9.diko.ui.settings
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -15,16 +14,8 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dk.itu.moapd.x9.diko.R
-import dk.itu.moapd.x9.diko.model.Report
-import dk.itu.moapd.x9.diko.ui.report.ReportContent
-import dk.itu.moapd.x9.diko.ui.report.theme.ReportCardTheme
-import dk.itu.moapd.x9.diko.ui.report.validateFormInput
-import dk.itu.moapd.x9.diko.ui.settings.ui.theme.X9Theme
-import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,7 +25,7 @@ fun MainScaffold(
     onEditPicture: () -> Unit,
     onSignOut: () -> Unit,
 )
-{
+{ // Sets up the Settings Screen and interactable elements.
     Scaffold(
         topBar = {
             TopAppBar(

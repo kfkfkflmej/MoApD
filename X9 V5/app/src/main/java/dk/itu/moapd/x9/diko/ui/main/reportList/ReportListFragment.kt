@@ -3,6 +3,7 @@ package dk.itu.moapd.x9.diko.ui.main.reportList
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
@@ -20,26 +21,25 @@ import dk.itu.moapd.x9.diko.ui.list.CustomAdapter
 import dk.itu.moapd.x9.diko.ui.report.REPORT_SUCCESSFUL
 import dk.itu.moapd.x9.diko.ui.report.ReportActivity
 
-// TODO: Rename parameter arguments, choose names that match
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ReportListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+private const val TAG = "ReportList"
+
 class ReportListFragment : Fragment(R.layout.fragment_report_list) {
-
+    // Defines the Report List Fragment.
+    // Displays a list of all submitted reports.
+    // Allows the user to add new reports by accessing the Report Activity.
     private lateinit var binding: FragmentReportListBinding
     private lateinit var adapter: CustomAdapter
 
     private val reportLauncher= registerForActivityResult(
         ActivityResultContracts.StartActivityForResult())
-    { result ->
+    { result -> // Reads the result of the ReportActivity and saves it into a runtime repository.
         if (result.resultCode == RESULT_OK) {
             val data : Bundle? = result.data?.getBundleExtra(REPORT_SUCCESSFUL)
 
-            var report_data : Report = Report("", "", "", "", "", "")
-            val convertBundleToReport = report_data.convertBundleToReport(data!!)
+            var reportData = Report("", "", "", "", "", "")
+            val convertBundleToReport = reportData.convertBundleToReport(data!!)
             convertBundleToReport.let {
                 ReportRepository.addReport(it)
             }
@@ -55,26 +55,18 @@ class ReportListFragment : Fragment(R.layout.fragment_report_list) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated() called")
+
         binding = FragmentReportListBinding.bind(view)
         adapter = CustomAdapter(emptyList())
         binding.reportListView.layoutManager = LinearLayoutManager(requireContext())
         binding.reportListView.adapter = adapter
         setupRecyclerView()
 
-        binding.fabAddReport?.let {
-            ViewCompat.setOnApplyWindowInsetsListener(it) { view, insets ->
-                val bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
 
-                /*view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                    bottomMargin = 16.dpToPx() + bottomInset
-                }
-
-                */insets
-            }
-        }
-
-        binding.fabAddReport?.setOnClickListener {
+        binding.fabAddReport.setOnClickListener {
             val intent = Intent(requireContext(), ReportActivity::class.java)
             reportLauncher.launch(intent)
         }
@@ -83,8 +75,35 @@ class ReportListFragment : Fragment(R.layout.fragment_report_list) {
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "onResume() called")
         refreshData()
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause() called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop() called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy() called")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d(TAG, "onDetach() called")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView() called")
+    }
+
 
     private fun refreshData() {
         val updatedList = ReportRepository.getReports()
@@ -93,6 +112,8 @@ class ReportListFragment : Fragment(R.layout.fragment_report_list) {
 
 
     private fun setupRecyclerView() =
+        // Sets up the RecyclerView for displaying the list of reports.
+        // Based on the Fabricio's repo example
         with(binding.reportListView) {
             val data = ReportRepository.getReports()
             adapter = CustomAdapter(data)

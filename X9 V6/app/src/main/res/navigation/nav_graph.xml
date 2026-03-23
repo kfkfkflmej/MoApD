@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragment_home"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="dk.itu.moapd.x9.diko.ui.main.home.HomeFragment"
+        android:label="@string/fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_report_list"
+            app:destination="@id/fragment_report_list"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_report_list"
+        android:name="dk.itu.moapd.x9.diko.ui.main.reportList.ReportListFragment"
+        android:label="@string/fragment_report_list"
+        tools:layout="@layout/fragment_report_list">
+        <action
+            android:id="@+id/action_report_list_to_map"
+            app:destination="@id/fragment_map"
+            />
+        <action
+            android:id="@+id/action_report_list_to_home"
+            app:destination="@id/fragment_home"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_map"
+        android:name="dk.itu.moapd.x9.diko.ui.main.map.MapFragment"
+        android:label="@string/fragment_map"
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_map_to_report_list"
+            app:destination="@id/fragment_report_list"
+            />
+        <action
+            android:id="@+id/action_map_to_profile"
+            app:destination="@id/fragment_profile"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="dk.itu.moapd.x9.diko.ui.main.profile.ProfileFragment"
+        android:label="@string/fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_map"
+            app:destination="@id/fragment_map"
+            />
+    </fragment>
+
+
+
+
+</navigation>

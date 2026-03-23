@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.report.ReportCard">
+    android:layout_height="match_parent">
+    <!-- tools:context=".ui.report.ReportCard"> -->
 
     <!-- Top App Bar -->
     <com.google.android.material.appbar.AppBarLayout
@@ -76,7 +76,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="12dp"
-                app:startIconDrawable="@drawable/location">
+                app:startIconDrawable="@drawable/location"
+                android:maxWidth="320dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -105,9 +106,9 @@
                     android:hint="@string/text_field_report_date"
                     android:focusable="false"
                     android:inputType="date"
-                    android:clickable="true"
                     android:paddingStart="45dp"
                     tools:ignore="RtlSymmetry"
+                    android:maxWidth="488dp"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -129,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/menu_report_type"
                     android:inputType="text"
-                    android:clickable="true"
                     android:focusable="false"
                     android:paddingStart="45dp"
                     tools:ignore="RtlSymmetry"
@@ -154,7 +154,8 @@
                     android:maxLines="6"
                     android:gravity="top|start"
                     android:inputType="textMultiLine"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:maxWidth="320dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -207,6 +208,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="12dp"
+                android:maxWidth="310dp"
+
                 />
 
         </LinearLayout>

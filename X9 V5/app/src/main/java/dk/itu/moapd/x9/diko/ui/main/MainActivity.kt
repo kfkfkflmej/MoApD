@@ -1,67 +1,34 @@
 package dk.itu.moapd.x9.diko.ui.main
 
-import android.content.Context
-import android.content.Intent
+
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dk.itu.moapd.x9.diko.R
-import com.google.android.material.snackbar.Snackbar
 
-import dk.itu.moapd.x9.diko.data.ReportRepository
 import dk.itu.moapd.x9.diko.databinding.ActivityMainBinding
 
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
-
+    // Defines the Launcher Activity and the main entry point of the app.
+    // The activity sets the main parts of the UI and hosts the main fragments of the app.
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
-
-
-    /*
-    private val reportLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    )
-    { result ->
-        if (result.resultCode == RESULT_OK) {
-            val data: Bundle? = result.data?.getBundleExtra(REPORT_SUCCESSFUL)
-
-            var report_data: Report = Report("", "", "", "", "", "")
-            val convertBundleToReport = report_data.convertBundleToReport(data!!)
-            convertBundleToReport.let {
-                ReportRepository.addReport(it)
-            }
-            setupRecyclerView()
-
-
-            Snackbar.make(
-                binding.root,
-                "Report submitted",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
-    }
-     */
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -89,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupNavigation()
-        //setupRecyclerView()
     }
 
     override fun onStart() {
@@ -118,6 +84,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
+        // Set up UI interactive elements.
+        // Portrait: bottom navigation.
+        // Landscape: navigation rail.
+        // Based on the Fabricio's repo example
 
 
         setSupportActionBar(binding.topAppBar)
@@ -146,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Connects BottomNavigationView (if present).
      */
-    private fun setupNavigation(navController: androidx.navigation.NavController) {
+    private fun setupNavigation(navController: NavController) {
         // Portrait: bottom navigation. Landscape: navigation rail.
         binding.bottomNavigation?.setupWithNavController(navController)
         binding.navigationRail?.setupWithNavController(navController)
