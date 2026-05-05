@@ -62,7 +62,7 @@ class CustomAdapter (
                 textViewDate.text = report.date
                 when (report.type) {
                     "Incident" -> iconType.setImageResource(R.drawable.type_incident)
-                    "Heavy Traffic" -> iconType.setImageResource(R.drawable.traffic_jam_24dp_1f1f1f_fill0_wght400_grad0_opsz24)
+                    "Heavy Traffic" -> iconType.setImageResource(R.drawable.traffic_jam)
                     "Maintenance" -> iconType.setImageResource(R.drawable.type_maintenance)
                     "Police" -> iconType.setImageResource(R.drawable.type_police)
                     "Camera" -> iconType.setImageResource(R.drawable.speed_camera)

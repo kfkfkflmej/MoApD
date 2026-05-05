@@ -112,12 +112,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         // Used for setting up the Profile Fragment. It makes it easier to reflect changes to the user information.
         with(binding){
             val userdata = Profile.getProfile()
-            textFirstName.text = userdata.first_name
-            textLastName.text = userdata.last_name
+            textFirstName.text = userdata.firstName
+            textLastName.text = userdata.lastName
             textUsername.text = userdata.username
             textEmail.text = userdata.email
-            val stats_message = "You have submitted ${userdata.num_reports} reports so far! Thank you for being part of the community!"
-            textReportStats.text = stats_message
+            val statsMessage = getString(R.string.num_of_reports_blank, userdata.numReports)
+            textReportStats.text = statsMessage
+
     }
 
 

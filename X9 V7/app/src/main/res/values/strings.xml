@@ -1,0 +1,112 @@
+<resources>
+    <string name="app_name">X9</string>
+    <string name="button_minor">Minor</string>
+    <string name="button_moderate">Moderate</string>
+    <string name="button_major">Major</string>
+    <string name="text_field_report_name">Report Title</string>
+    <string name="text_field_report_date">Date</string>
+    <string name="text_field_description">Report Description</string>
+    <string name="button_save">Save</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="menu_report_type">Report type</string>
+    <string name="menu_report_location">Report location</string>
+    <string name="log_in">Log in</string>
+    <string name="log_out">Log out</string>
+    <string name="menu_settings">Settings</string>
+    <string name="text_field_username">Enter your username</string>
+    <string name="text_field_password">Password</string>
+    <string name="text_field_report_location">Report location</string>
+    <string name="submit">Submit</string>
+    <string name="report_type_option_1">Incident</string>
+    <string name="report_type_option_2">Heavy Traffic</string>
+    <string name="report_type_option_3">Maintenance</string>
+    <string name="report_type_option_4">Police</string>
+    <string name="report_type_option_5">Camera</string>
+    <string name="report_type_option_6">Pothole</string>
+    <string name="report_type_option_7">Other</string>
+    <string name="menu">Menu</string>
+    <string name="report_page_title">Report Card</string>
+    <string name="add_report">Add Report</string>
+    <string-array name="report_options">
+        <item>@string/report_type_option_1</item>
+        <item>@string/report_type_option_2</item>
+        <item>@string/report_type_option_3</item>
+        <item>@string/report_type_option_4</item>
+        <item>@string/report_type_option_5</item>
+        <item>@string/report_type_option_6</item>
+        <item>@string/report_type_option_7</item>
+    </string-array>
+    <string name="gender_option1">Male</string>
+    <string name="gender_option2">Female</string>
+    <string name="gender_option3">Other</string>
+    <string-array name="gender_options">
+        <item>@string/gender_option1</item>
+        <item>@string/gender_option2</item>
+        <item>@string/gender_option3</item>
+    </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_report">Report</string>
+    <string name="fragment_home">Home</string>
+    <string name="fragment_profile">Profile</string>
+    <string name="save">Save</string>
+    <string name="menu_gender">Select gender</string>
+    <string name="profile_first_name">First Name</string>
+    <string name="profile_last_name">Last Name</string>
+    <string name="profile_top_bar_title">Edit Profile</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="profile_email">Enter email</string>
+    <string name="fragment_map">Map</string>
+    <string name="fragment_report_list">List</string>
+    <string name="greeting">Hi %s!</string>
+    <string name="home_options">Would you like to:</string>
+    <string name="report_list_shortcut">See the latest reports</string>
+    <string name="map_shortcut">Explore the map</string>
+    <string name="report_shortcut">Report a problem</string>
+    <string name="num_of_reports_blank">You have submitted %s reports so far! Thank you for being part of the community!</string>
+    <string name="email_example">user_example@email.com</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="settings">Settings</string>
+    <string name="edit_picture">EDIT PICTURE</string>
+    <string name="sign_out">SIGN OUT</string>
+    <string name="done">DONE</string>
+    <string name="email">Email</string>
+    <string name="to_be_implemented">To be implemented</string>
+    <string name="add_profile_picture">Add Profile Picture</string>
+    <string name="icon">icon</string>
+    <string name="severity_error">Select severity</string>
+    <string name="title_empty">Title cannot be empty</string>
+    <string name="title_too_short">Title must be at least 3 characters long</string>
+    <string name="location_empty">Location cannot be empty</string>
+    <string name="location_too_short">Location must be at least 3 characters long</string>
+    <string name="date_empty">Date cannot be empty</string>
+    <string name="type_empty">Type cannot be empty</string>
+    <string name="permission_denied_message">Location permission is required to track your location</string>
+    <string name="itu_title">IT University of Copenhagen</string>
+    <string name="user_logged_in_the_app">User logged in the app.</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="select_date">Select date</string>
+    <string name="report_submitted">Report submitted</string>
+    <string name="please_fill_all_the_fields">Please fill all the fields</string>
+    <string name="upload_picture">Upload Picture</string>
+    <string name="select_severity">Select severity</string>
+    <string name="fill_all">Please fill all the fields</string>
+    <string name="my_reports">My reports</string>
+    <string name="all_reports">All</string>
+    <string name="all_reports_list">List</string>
+    <string name="reports_calendar">Calendar</string>
+    <string name="fragment_report_log">Log</string>
+    <string name="reports_from">Reports from %s</string>
+    <string name="empty_reports_day">No reports for this day</string>
+    <string name="empty_user_reports">You have not submitted any active reports</string>
+    <string name="empty_reports_list">No reports to see yet</string>
+    <string name="item_deleted">The report was deleted</string>
+    <string name="profile_name">Profile name</string>
+    <string name="please_username">Please enter username to be able to add reports in the app</string>
+    <string name="notify_danger">Notify me for danger</string>
+    <string name="enable_fencing">We will tell you if you are close to a reported location.</string>
+    <string name="disable_fencing">We will not track if you are cose to danger.</string>
+    <string name="anonymous_message">Please create an account in order to submit any reports</string>
+    <string name="new_name">Your username is updated</string>
+    <string name="empty_reports_map">There has been mistake finging the report or it has been deleted by the author.</string>
+    <string name="add_from_map">Do you want to create a report at this location?</string>
+</resources>

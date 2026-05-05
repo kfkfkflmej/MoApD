@@ -72,4 +72,5 @@
     <string name="email">Email</string>
     <string name="to_be_implemented">To be implemented</string>
     <string name="add_profile_picture">Add Profile Picture</string>
+    <string name="icon">icon</string>
 </resources>

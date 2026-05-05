@@ -1,32 +1,27 @@
 package dk.itu.moapd.x9.diko.ui.main
 
-import android.content.Context
+
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
 import dk.itu.moapd.x9.diko.R
-import com.google.android.material.snackbar.Snackbar
-
-import dk.itu.moapd.x9.diko.data.ReportRepository
+import dk.itu.moapd.x9.diko.data.ReportData.populateRepository
 import dk.itu.moapd.x9.diko.databinding.ActivityMainBinding
+import dk.itu.moapd.x9.diko.ui.auth.LoginActivity
 
 
 private const val TAG = "MainActivity"
@@ -35,34 +30,9 @@ class MainActivity : AppCompatActivity() {
     // Defines the Launcher Activity and the main entry point of the app.
     // The activity sets the main parts of the UI and hosts the main fragments of the app.
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
-
-
-    /*
-    private val reportLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    )
-    { result ->
-        if (result.resultCode == RESULT_OK) {
-            val data: Bundle? = result.data?.getBundleExtra(REPORT_SUCCESSFUL)
-
-            var report_data: Report = Report("", "", "", "", "", "")
-            val convertBundleToReport = report_data.convertBundleToReport(data!!)
-            convertBundleToReport.let {
-                ReportRepository.addReport(it)
-            }
-            setupRecyclerView()
-
-
-            Snackbar.make(
-                binding.root,
-                "Report submitted",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
-    }
-     */
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -90,11 +60,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupNavigation()
+
+        // Initialize Firebase Auth.
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart() called")
+        auth.currentUser ?: startLoginActivity()
     }
 
     override fun onResume() {
@@ -135,6 +109,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarIfPortrait(navController)
         setupNavigation(navController)
+        populateRepository()
     }
 
     /**
@@ -150,7 +125,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Connects BottomNavigationView (if present).
      */
-    private fun setupNavigation(navController: androidx.navigation.NavController) {
+    private fun setupNavigation(navController: NavController) {
         // Portrait: bottom navigation. Landscape: navigation rail.
         binding.bottomNavigation?.setupWithNavController(navController)
         binding.navigationRail?.setupWithNavController(navController)
@@ -170,6 +145,13 @@ class MainActivity : AppCompatActivity() {
                             as NavHostFragment
                     ).navController
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun startLoginActivity() {
+        Intent(this, LoginActivity::class.java).apply {
+            // An alternative to instead of calling finish() method.
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }.let(::startActivity)
     }
 }
 

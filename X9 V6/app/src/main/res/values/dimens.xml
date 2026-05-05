@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_medium" />
-    <dimen name="margin_extra_large" />
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_standard">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xlarge">48dp</dimen>
+    <dimen name="margin_extra_large">96dp</dimen>
+    <dimen name="bottom_sheet_peek_height">300px</dimen>
 </resources>

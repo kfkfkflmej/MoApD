@@ -6,18 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import dk.itu.moapd.x9.diko.R
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
-import dk.itu.moapd.x9.diko.data.ReportRepository
 import dk.itu.moapd.x9.diko.databinding.FragmentHomeBinding
-import dk.itu.moapd.x9.diko.model.Report
-import dk.itu.moapd.x9.diko.ui.report.REPORT_SUCCESSFUL
-import dk.itu.moapd.x9.diko.ui.report.ReportActivity
 
 private const val TAG = "HomeFragment"
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -25,26 +16,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     //Default fragment for the Main Activity. Used as a simple introduction to the app.
     private lateinit var binding: FragmentHomeBinding
 
-    private val reportLauncher= registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult())
-    { result -> // Reads the result of the ReportActivity and saves it into a runtime repository.
-        if (result.resultCode == RESULT_OK) {
-            val data : Bundle? = result.data?.getBundleExtra(REPORT_SUCCESSFUL)
 
-            var report_data : Report = Report("", "", "", "", "", "")
-            val convertBundleToReport = report_data.convertBundleToReport(data!!)
-            convertBundleToReport.let {
-                ReportRepository.addReport(it)
-            }
-
-
-            Snackbar.make(
-                binding.root,
-                "Report submitted",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Makes shortcuts from the Home fragment to several other features.
@@ -64,26 +36,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.actionReportProblem.setOnClickListener {
-            val intent = Intent(requireContext(), ReportActivity::class.java)
-            reportLauncher.launch(intent)
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                .selectedItemId = R.id.fragment_report
         }
 
-        binding.fabAddReport.let {
-            ViewCompat.setOnApplyWindowInsetsListener(it) { view, insets ->
-                val bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
-
-                /*view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        bottomMargin = 16.dpToPx() + bottomInset
-                    }
-
-                    */insets
-            }
-        }
 
         binding.fabAddReport.setOnClickListener {
-            // Launches the ReportActivity with implicit Intent.
-            val intent = Intent(requireContext(), ReportActivity::class.java)
-            reportLauncher.launch(intent)
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                .selectedItemId = R.id.fragment_report
         }
 
     }

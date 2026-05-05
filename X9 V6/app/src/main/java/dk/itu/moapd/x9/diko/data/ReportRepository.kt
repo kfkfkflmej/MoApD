@@ -15,4 +15,8 @@ object ReportRepository {
     fun getReports(): List<Report> {
         return reports
     }
+
+    fun getReportsFromDate(date: String): List<Report> {
+        return reports.filter { it.date.trim() == date.trim() }
+    }
 }

@@ -7,8 +7,8 @@ object Profile {
     // It is used to store the user information after they have passed the LoginActivity.
     private var profile = Person("", "", "", "", "")
 
-    fun setProfile(profile_data: Person) {
-        this.profile = profile_data
+    fun setProfile(profileData: Person) {
+        this.profile = profileData
     }
 
     fun getProfile(): Person {

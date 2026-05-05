@@ -3,6 +3,7 @@ package dk.itu.moapd.x9.diko.ui.report.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
@@ -32,7 +33,7 @@ fun ReportTypeDropdown(viewModel: ReportViewModel) {
 
     ExposedDropdownMenuBox(
         expanded = expanded,
-        onExpandedChange = { }
+        onExpandedChange = { expanded = !expanded }
     ) {
 
         OutlinedTextField(
@@ -41,7 +42,10 @@ fun ReportTypeDropdown(viewModel: ReportViewModel) {
             readOnly = true,
             label = { Text(stringResource(R.string.menu_report_type)) },
             modifier = Modifier
-                .menuAnchor()
+                .menuAnchor(
+                    type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                    enabled = true
+                )
                 .fillMaxWidth(),
             leadingIcon = {
                 Icon(
@@ -72,3 +76,5 @@ fun ReportTypeDropdown(viewModel: ReportViewModel) {
         }
     }
 }
+
+

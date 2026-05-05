@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.secrets)
 }
 
 android {
@@ -76,5 +78,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.ui.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.ui.database)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+    implementation(libs.firebase.storage)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

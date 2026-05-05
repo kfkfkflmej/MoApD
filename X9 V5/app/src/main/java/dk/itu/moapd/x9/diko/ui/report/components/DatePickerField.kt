@@ -88,11 +88,12 @@ fun DatePickerField(viewModel: ReportViewModel) {
                     viewModel.updateDate(date)
                 }
             },
-            onDismiss = { }
+            onDismiss = { showDatePicker = false }
 
         )
     }
 }
+
 
 
 @Composable

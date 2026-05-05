@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="@dimen/margin_large">
 
             <!-- Greeting -->
             <TextView
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/greeting"
                 style="@style/username_name"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="@dimen/margin_large"/>
 
             <!-- Subtitle -->
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/home_options"
                 style="@style/TextAppearance.Material3.BodyLarge"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="@dimen/margin_medium"/>
 
             <!-- Shortcut: Latest Reports -->
             <TextView
@@ -48,11 +48,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/report_list_shortcut"
                 style="@style/TextAppearance.Material3.BodyLarge.Emphasized"
-                android:padding="12dp"
-                android:clickable="true"
+                android:padding="@dimen/margin_medium"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/margin_medium"
                 android:textColor="@color/link"/>
 
             <!-- Shortcut: Explore Map -->
@@ -62,11 +61,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/map_shortcut"
                 style="@style/TextAppearance.Material3.BodyLarge.Emphasized"
-                android:padding="12dp"
-                android:clickable="true"
+                android:padding="@dimen/margin_medium"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/margin_medium"
                 android:textColor="@color/link"/>
 
             <!-- Shortcut: Report Problem -->
@@ -76,11 +74,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/report_shortcut"
                 style="@style/TextAppearance.Material3.BodyLarge.Emphasized"
-                android:padding="12dp"
-                android:clickable="true"
+                android:padding="@dimen/margin_medium"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/margin_medium"
                 android:textColor="@color/link"/>
 
         </LinearLayout>
@@ -89,16 +86,17 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAddReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_margin="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_extra_large"
+        android:text="@string/add_report"
         android:contentDescription="@string/add_report"
+        app:icon="@drawable/add"
+        app:iconPadding="@dimen/margin_standard"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/add"
-        />
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
