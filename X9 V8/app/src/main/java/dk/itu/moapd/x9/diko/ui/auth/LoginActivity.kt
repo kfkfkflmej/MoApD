@@ -1,0 +1,147 @@
+package dk.itu.moapd.x9.diko.ui.auth
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import dk.itu.moapd.x9.diko.R
+import dk.itu.moapd.x9.diko.ui.main.MainActivity
+import dk.itu.moapd.x9.diko.ui.common.showSnackBar
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import dk.itu.moapd.x9.diko.data.UserRepository
+
+
+class LoginActivity: AppCompatActivity() {
+
+    private val userRepository by lazy { UserRepository() }
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { result ->
+        onSignInResult(result)
+    }
+
+    /**
+     * Called when the activity is starting. This is where most initialization should go: calling
+     * `setContentView(int)` to inflate the activity's UI, using `findViewById()` to
+     * programmatically interact with widgets in the UI, calling
+     * `managedQuery(android.net.Uri, String[], String, String[], String)` to retrieve cursors for
+     * data being displayed, etc.
+     *
+     * You can call `finish()` from within this function, in which case `onDestroy()` will be
+     * immediately called after `onCreate()` without any of the rest of the activity lifecycle
+     * (`onStart()`, `onResume()`, onPause()`, etc) executing.
+     *
+     * <em>Derived classes must call through to the super class's implementation of this method. If
+     * they do not, an exception will be thrown.</em>
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut
+     * down then this Bundle contains the data it most recently supplied in `onSaveInstanceState()`.
+     * <b><i>Note: Otherwise it is null.</i></b>
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        createSignInIntent()
+    }
+
+    /**
+     * This method uses FirebaseUI to create a login activity with three sign-in/sign-up options,
+     * namely: (1) by e-mail, (2) by phone number, and (3) by Google account. The user interface is
+     * pre-defined and it uses the same theme (i.e., Material Design) to define the login activity
+     * style.
+     */
+    private fun createSignInIntent() {
+
+        // Choose authentication providers.
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build(),
+            AuthUI.IdpConfig.AnonymousBuilder().build())
+
+        // Create and launch sign-in intent.
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .setLogo(R.drawable.baseline_firebase_24)
+            .setTheme(R.style.Theme_FirebaseAuthentication)
+            .apply {
+                setTosAndPrivacyPolicyUrls(
+                    "https://firebase.google.com/terms/",
+                    "https://firebase.google.com/policies/analytics"
+                )
+            }
+            .build()
+        signInLauncher.launch(signInIntent)
+    }
+
+    /**
+     * When the second activity finishes (i.e., the pre-define login activity), it returns a result
+     * to this activity. If the user sign-in the application correctly, we redirect the user to the
+     * main activity of this application.
+     *
+     * @param result A result describing that the caller can launch authentication flow with a
+     *      `Intent` and is guaranteed to receive a `FirebaseAuthUIAuthenticationResult` as
+     *      result.
+     */
+    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+        when (result.resultCode) {
+            RESULT_OK -> {
+                val user = FirebaseAuth.getInstance().currentUser ?: return
+                // 👇 KEY PART: check & create user
+                createUserIfNotExists(user)
+            }
+            else -> {
+                // Sign in failed.
+                showSnackBar(getString(R.string.authentication_failed))
+            }
+        }
+    }
+
+    private fun createUserIfNotExists(user: FirebaseUser) {
+        val userId = user.uid
+        val ref = FirebaseDatabase.getInstance()
+            .reference
+            .child("users")
+            .child(userId)
+
+        ref.get().addOnSuccessListener { snapshot ->
+            if (!snapshot.exists()) {
+                userRepository.saveUser(userId,
+                    user.displayName ?: "",
+                    user.email ?: "")
+            }
+        }
+
+        // Successfully signed in.
+        showSnackBar(getString(R.string.user_logged_in_the_app))
+        startMainActivity()
+
+    }
+
+    /**
+     * In the case of successfully login, it opens the main activity and starts the Firebase
+     * Authentication application.
+     */
+    private fun startMainActivity() {
+        Intent(this, MainActivity::class.java).apply {
+            startActivity(this)
+            finish()
+        }
+    }
+
+    /**
+     * Displays a SnackBar to show a brief message about the clicked button.
+     *
+     * The SnackBar is created using the clicked button's information and is shown at the bottom of
+     * the screen.
+     *
+     * @param message The message to be displayed in the SnackBar.
+     */
+    private fun showSnackBar(message: String) {
+        window.decorView.rootView.showSnackBar(message)
+    }
+
+}
