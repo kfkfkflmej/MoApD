@@ -1,19 +1,19 @@
 # X9 — Road Hazard Reporting for Android
 
-A community-driven Android app for reporting and discovering road hazards — accidents, heavy traffic, roadworks, police presence — with live map visualisation, photo evidence, and geofenced proximity alerts.
+A community-driven Android app for reporting and discovering road hazards—accidents, heavy traffic, roadworks, police presence—with live map visualization, photo evidence, and geofenced proximity alerts.
 
 Built in Kotlin for the Mobile App Development course at the IT University of Copenhagen.
 
 Mobile App development, Spring 2026
 
-
-
-<!-- TODO: add 3–4 screenshots here. For a portfolio repo this is the single highest-impact addition —
-     most people will judge a mobile app on what it looks like before they read a line of Kotlin.
-     Suggested: home/geofence toggle, map with hazard markers, report creation form, calendar log.
-
-     ![Home](docs/screenshots/home.png) ![Map](docs/screenshots/map.png) ![Report](docs/screenshots/report.png)
--->
+<table>
+  <tr>
+    <td align="center"><img src="pictures/home_page.jpg" width="200"><br><sub>Home page with shortcuts to the main features</sub></td>
+     <td align="center"><img src="pictures/report_log_page.png" width="300"><br><sub>Report log with all active reports</sub></td>
+    <td align="center"><img src="pictures/map_page.jpg" width="200"><br><sub>Map for displaying the geographical location of reports</sub></td>
+    <td align="center"><img src="pictures/report_page.jpg" width="200"><br><sub>Report page for submitting a reposrt</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -131,9 +131,6 @@ users/{userId}
 
 ---
 
-
-<!-- TODO: See "Suggested cleanup" in the handover notes — collapsing these into a single project
-     directory and using git tags for the milestones would make this repo read much better. -->
      
 ## Development history
 
