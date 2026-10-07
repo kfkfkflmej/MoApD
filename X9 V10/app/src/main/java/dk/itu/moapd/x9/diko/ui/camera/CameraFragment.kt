@@ -15,7 +15,7 @@ import dk.itu.moapd.x9.diko.R
 import dk.itu.moapd.x9.diko.cameraX.CameraXController
 import dk.itu.moapd.x9.diko.databinding.FragmentCameraBinding
 import dk.itu.moapd.x9.diko.media.capture.PhotoCaptureManager
-import dk.itu.moapd.x9.diko.permisions.CameraPermissionHelper
+import dk.itu.moapd.x9.diko.permissions.CameraPermissionHelper
 import dk.itu.moapd.x9.diko.ui.common.showSnackBar
 import kotlin.getValue
 

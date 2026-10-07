@@ -51,6 +51,12 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private val binding get() = _binding!!
 
     private var getAddressJob: Job? = null
+
+    /**
+     * New addition: The Firebase listener and query.
+     */
+    private var reportsEventListener: ValueEventListener? = null
+
     /**
      * The Google Maps object.
      */
@@ -167,6 +173,10 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     override fun onDestroyView() {
         super.onDestroyView()
         getAddressJob?.cancel()
+        // New addition: Removes the Firebase listener to prevent crashes and memory leaks.
+        reportsEventListener?.let {
+            repository.getReports().removeEventListener(it)
+        }
         _binding = null
     }
 
@@ -174,8 +184,11 @@ class MapFragment : Fragment(R.layout.fragment_map) {
      * Fetches reports from Firebase and adds them as markers on the map.
      */
     private fun addMarkers() {
-        repository.getReports().addValueEventListener(object : ValueEventListener {
+        reportsEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                // Check if the fragment is still attached to the activity.
+                if (!isAdded) return
+
                 googleMap?.let { map ->
                     map.clear()
 
@@ -204,7 +217,9 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             override fun onCancelled(error: DatabaseError) {
                 Log.e(TAG, "Firebase error: ${error.message}")
             }
-        })
+        }.also {
+            repository.getReports().addValueEventListener(it)
+        }
     }
 
     /**

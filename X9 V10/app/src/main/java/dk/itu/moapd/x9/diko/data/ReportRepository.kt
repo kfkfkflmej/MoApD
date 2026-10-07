@@ -14,7 +14,6 @@ import dk.itu.moapd.x9.diko.model.Report
 import androidx.core.net.toUri
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
-import dk.itu.moapd.x9.diko.ui.main.report.CREATED_AT_KEY
 import java.text.SimpleDateFormat
 import java.util.Locale
 

@@ -73,15 +73,25 @@ class CustomAdapter(
             textViewDate.text = report.date
             textViewSeverity.text = report.severity
 
-            when (report.type) {
-                "Incident" -> iconType.setImageResource(R.drawable.type_incident)
-                "Heavy Traffic" -> iconType.setImageResource(R.drawable.traffic_jam)
-                "Maintenance" -> iconType.setImageResource(R.drawable.type_maintenance)
-                "Police" -> iconType.setImageResource(R.drawable.type_police)
-                "Camera" -> iconType.setImageResource(R.drawable.speed_camera)
-                "Pothole" -> iconType.setImageResource(R.drawable.pothole)
-                "Other" -> iconType.setImageResource(R.drawable.type_other)
+            val iconRes = when (report.type) {
+                "Incident" -> R.drawable.type_incident
+                "Heavy Traffic" -> R.drawable.traffic_jam
+                "Maintenance" -> R.drawable.type_maintenance
+                "Police" -> R.drawable.type_police
+                "Camera" -> R.drawable.speed_camera
+                "Pothole" -> R.drawable.pothole
+                else -> R.drawable.type_other
             }
+            iconType.setImageResource(iconRes)
+
+            // Apply theme-aware tint (colorOnSurface automatically handles light/dark)
+            val typedValue = TypedValue()
+            root.context.theme.resolveAttribute(
+                com.google.android.material.R.attr.colorOnSurface,
+                typedValue,
+                true
+            )
+            iconType.setColorFilter(typedValue.data)
 
             // Handle Report Image with Glide
             if (!report.imageRef.isNullOrEmpty()) {
