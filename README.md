@@ -6,6 +6,8 @@ Built in Kotlin for the Mobile App Development course at the IT University of Co
 
 Mobile App development, Spring 2026
 
+
+
 <!-- TODO: add 3–4 screenshots here. For a portfolio repo this is the single highest-impact addition —
      most people will judge a mobile app on what it looks like before they read a line of Kotlin.
      Suggested: home/geofence toggle, map with hazard markers, report creation form, calendar log.
@@ -48,7 +50,7 @@ model/         Report, User
 services/      GeoapifyService (OkHttp + coroutines)
 media/         PhotoCaptureManager
 broadcasts/    GeofenceReceiver
-cameraX/       CameraXControler
+cameraX/       CameraXController
 permisions/    CameraPermissionHelper
 ```
 
@@ -75,7 +77,7 @@ detekt + ktlint for static analysis
 
 ### Prerequisites
 
-- Android Studio <!-- TODO: state the version you used -->
+- Android Studio Otter 3 Feature Drop | 2025.2.3
 - JDK 11
 - A device or emulator running API 23+ with Google Play services
 - A Firebase project
@@ -129,21 +131,24 @@ users/{userId}
 
 ---
 
-## Repository layout
-
-This repository preserves the full progression of the project across ten iterations:
-
-| Directory | Milestone |
-|---|---|
-| `X9 V2` – `X9 V4` | UI foundations, fragments, navigation, landscape layouts |
-| `X9 V5` – `X9 V6` | Report model and list handling, pre-Firebase |
-| `X9 V7` | Authentication, Realtime Database, Maps integration |
-| `X9 V8` | Photo capture, upload, and display |
-| `X9 V9` | Geofencing and proximity alerts |
-| **`X9 V10`** | **Final version** |
 
 <!-- TODO: See "Suggested cleanup" in the handover notes — collapsing these into a single project
      directory and using git tags for the milestones would make this repo read much better. -->
+     
+## Development history
+
+The project was built iteratively, and each milestone is preserved as a git tag:
+
+| Tag | Milestone |
+|---|---|
+| [`v2-ui-basics`](../../tree/v2-ui-basics) – [`v4-stable`](../../tree/v4-stable) | UI foundations, fragments, navigation, landscape layouts |
+| [`v5-pre-firebase`](../../tree/v5-pre-firebase) | Report model and list handling |
+| [`v7-firebase-maps`](../../tree/v7-firebase-maps) | Authentication, Realtime Database, Maps |
+| [`v8-photos`](../../tree/v8-photos) | Photo capture, upload and display |
+| [`v9-geofence`](../../tree/v9-geofence) | Geofencing and proximity alerts |
+| [`v10-final`](../../tree/v10-final) | Final version |
+---
+
 
 ---
 
@@ -157,4 +162,4 @@ Instructor: [Fabricio Batista Narcizo](https://www.fabricionarcizo.com/)
 
 **Dimitar Kochev** — diko@itu.dk
 IT University of Copenhagen
-Programm: Bachelor in Data Science
+Program: Bachelor in Data Science
